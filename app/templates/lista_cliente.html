@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load bootstrap5 %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de clientes</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    
+    <h1>{{ cliente.nome }}</h1>
+    <ul>
+        <li>{{ cliente.nome }}</li>
+        <li>{{ cliente.email }}</li>
+        <li>{{ cliente.data_nasc }}</li>
+        <li>{{ cliente.profissao }}</li>
+    </ul>
+
+</body>
+</html>
