@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load bootstrap5 %}
+{% load meus_filtros %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -17,11 +18,11 @@
             {% if cliente.profissao in list %}
                 {% ifchanged cliente.nome %}        
                     <ul>
-                        <li>{{ cliente.nome }}</li>
+                        <li>{{ cliente.nome|capfirst }}</li>
                         <li>{{ cliente.email }}</li>
                         <li>{{ cliente.data_nasc }}</li>
                     {% if cliente.profissao == 'Programador' %}
-                        <h3><li>{{ cliente.profissao }}</li></h3>
+                        <h3><li>{{ cliente.profissao|remover_caracter:"o" }}</li></h3>
                     {% elif cliente.profissao == 'Engenheiro' %}
                         <h3><li>{{ cliente.profissao }}</li></h3>
                     {% else %}  
