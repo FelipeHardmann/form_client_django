@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load bootstrap5 %}
+{% load meus_filtros %}
+{% load humanize %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de clientes</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    
+    <h1>Listagem de clientes</h1>
+    {% for cliente in object_list %}
+        {% with "Programador Engenheiro Designer" as list %}
+            {% if cliente.profissao in list %}
+                {% ifchanged cliente.nome %}        
+                    <ul>
+                        <li>{{ cliente.nome|capfirst }}</li>
+                        <li>{{ cliente.email }}</li>
+                        <li>{{ cliente.data_nasc }}</li>
+                    {% if cliente.profissao == 'Programador' %}
+                        <h3><li>{{ cliente.profissao|remover_caracter:"o" }}</li></h3>
+                    {% elif cliente.profissao == 'Engenheiro' %}
+                        <h3><li>{{ cliente.profissao }}</li></h3>
+                    {% else %}  
+                        <li>{{ cliente.profissao }}</li>
+                    {% endif %}
+                        <li> <a href={% url "lista_cliente" pk=cliente.id %}>Exibir</a></li>
+                        <li> <a href={% url "editar_cliente" pk=cliente.id %}>Editar</a></li>
+                        <li> <a href={% url "remover_cliente" pk=cliente.id %}>Remover</a></li>
+                        <hr>
+                    </ul>
+                {% endifchanged %}
+            {% endif %}
+        {% endwith %}                
+    {% empty %}
+        <h3>Não existem Clientes Cadastrados</h3>
+        <a href="{% url "cadastrar_cliente" %}">Cadastrar Cliente</a>
+    {% endfor %}
+
+    <button class="btn btn-outline-primary">
+        <a class="text-body" href="{% url "cadastrar_cliente" %}">
+            Cadastrar Novo Cliente
+        </a>
+    </button>
+    
+
+</body>
+</html>

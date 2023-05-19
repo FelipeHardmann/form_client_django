@@ -1,53 +1,66 @@
 <!DOCTYPE html>
 {% load bootstrap5 %}
 {% load meus_filtros %}
-{% load humanize %}
+{% load static %}
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de clientes</title>
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
 </head>
 <body>
-    
-    <h1>Listagem de clientes</h1>
-    {% for cliente in object_list %}
-        {% with "Programador Engenheiro Designer" as list %}
-            {% if cliente.profissao in list %}
-                {% ifchanged cliente.nome %}        
-                    <ul>
-                        <li>{{ cliente.nome|capfirst }}</li>
-                        <li>{{ cliente.email }}</li>
-                        <li>{{ cliente.data_nasc }}</li>
-                    {% if cliente.profissao == 'Programador' %}
-                        <h3><li>{{ cliente.profissao|remover_caracter:"o" }}</li></h3>
-                    {% elif cliente.profissao == 'Engenheiro' %}
-                        <h3><li>{{ cliente.profissao }}</li></h3>
-                    {% else %}  
-                        <li>{{ cliente.profissao }}</li>
-                    {% endif %}
-                        <li> <a href={% url "lista_cliente" pk=cliente.id %}>Exibir</a></li>
-                        <li> <a href={% url "editar_cliente" pk=cliente.id %}>Editar</a></li>
-                        <li> <a href={% url "remover_cliente" pk=cliente.id %}>Remover</a></li>
-                        <hr>
-                    </ul>
-                {% endifchanged %}
-            {% endif %}
-        {% endwith %}                
-    {% empty %}
-        <h3>Não existem Clientes Cadastrados</h3>
-        <a href="{% url "cadastrar_cliente" %}">Cadastrar Cliente</a>
-    {% endfor %}
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>Gestão de clientes</h1>
+            <p>O melhor sistema para gestão de clientes</p>
+        </div>
+    </div>
 
-    <button class="btn btn-outline-primary">
-        <a class="text-body" href="{% url "cadastrar_cliente" %}">
-            Cadastrar Novo Cliente
-        </a>
-    </button>
-    
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href={% url "lista_clientes" %}>Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Deals</a></li>
+                    <li><a href="#">Stores</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            {% for cliente in object_list %}
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">{{ cliente.nome }}</div>
+                    <div class="panel-body">{{ cliente.profissao }} - {{ cliente.data_nasc }}</div>
+                    <div class="panel-footer">
+                        <a href={% url "editar_cliente" pk=cliente.id %}>Editar</a>
+                        <a href={% url "remover_cliente" pk=cliente.id %}>Remover</a>
+                        <a href={% url "lista_cliente" pk=cliente.id %}>Exibir</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div><br>
 
 </body>
 </html>
