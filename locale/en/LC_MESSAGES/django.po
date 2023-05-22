@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-22 16:32-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/templates/base.html:20
+msgid "Gestão de clientes"
+msgstr "Client management"
+
+#: app/templates/base.html:37
+msgid "Home"
+msgstr "Home"
+
+#: app/templates/base.html:38
+msgid "Products"
+msgstr "Products"
+
+#: app/templates/base.html:39
+msgid "Deals"
+msgstr "Deals"
+
+#: app/templates/base.html:40
+msgid "Stores"
+msgstr "Stores"
+
+#: app/templates/base.html:41
+msgid "Contact"
+msgstr "Contact"
+
+#: project/settings.py:119
+msgid "English"
+msgstr ""
+
+#: project/settings.py:120
+msgid "Portuguese"
+msgstr ""

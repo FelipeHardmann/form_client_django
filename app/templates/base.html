@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load meus_filtros %}
 {% load static %}
+{% load i18n %}
 <html lang="pt-br">
 
 <head>
@@ -16,7 +17,7 @@
 <body>
     <div class="jumbotron">
         <div class="container text-center">
-            <h1>Gestão de clientes</h1>
+            <h1>{% translate "Gestão de clientes" %}</h1>
             <p>O melhor sistema para gestão de clientes</p>
         </div>
     </div>
@@ -33,11 +34,11 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href={% url "lista_clientes" %}>Home</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Deals</a></li>
-                    <li><a href="#">Stores</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li class="active"><a href={% url "lista_clientes" %}>{% translate "Home" %}</a></li>
+                    <li><a href="#">{% translate "Products" %}</a></li>
+                    <li><a href="#">{% translate 'Deals' %}</a></li>
+                    <li><a href="#">{% translate 'Stores' %}</a></li>
+                    <li><a href="#">{% translate 'Contact' %}</a></li>
                 </ul>
             </div>
         </div>
