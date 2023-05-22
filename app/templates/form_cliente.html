@@ -1,21 +1,19 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load bootstrap5 %}
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de clientes</title>
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
-<body>
-    
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input type="submit" class="btn btn-primary" value="Cadastrar">
-    </form>
+{% block 'conteudo' %}
 
-</body>
-</html>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <form method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <input type="submit" class="btn btn-primary" value="Cadastrar">
+                </form>
+            </div>
+        </div>
+    </div>
+</div><br>
+
+{% endblock 'conteudo' %}

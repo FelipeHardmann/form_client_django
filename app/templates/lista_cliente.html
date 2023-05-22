@@ -1,23 +1,24 @@
-<!DOCTYPE html>
-{% load bootstrap5 %}
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de clientes</title>
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
-<body>
-    
-    <h1>{{ cliente.nome }}</h1>
-    <ul>
-        <li>{{ cliente.nome }}</li>
-        <li>{{ cliente.email }}</li>
-        <li>{{ cliente.data_nasc }}</li>
-        <li>{{ cliente.profissao }}</li>
-    </ul>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block 'conteudo' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">{{ cliente.nome }}</div>
+                    <div class="panel-body">
+                        <li>{{ cliente.profissao }}</li>
+                        <li>{{ cliente.email }}</li>
+                        <li>{{ cliente.data_nasc }}</li>
+                    </div>
+                    <div class="panel-footer">
+                        <a href={% url "editar_cliente" pk=cliente.id %}>Editar</a>
+                        <a href={% url "remover_cliente" pk=cliente.id %}>Remover</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+
+{% endblock 'conteudo' %}
