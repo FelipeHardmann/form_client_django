@@ -3,10 +3,11 @@
     recebendo usuários e fazendo suas regras de negócio.
 '''
 
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import render, HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
 from .models import Cliente
+from .forms import ClienteForm, EnderecoForm
 
 class ClienteCreateView(CreateView):
     '''
@@ -14,9 +15,33 @@ class ClienteCreateView(CreateView):
         Aqui criamos nossa visualização e comunicação para o front-end
     '''
     model = Cliente
-    fields = '__all__'
+    form_class = ClienteForm
     template_name = 'form_cliente.html'
     success_url = 'lista_clientes'
+
+    def get_context_data(self, **kwargs):
+        '''
+            Quando a view for chamada
+            A função vai retornar qual contexto aparecerá na view
+        '''
+        context = super(ClienteCreateView, self).get_context_data(**kwargs)
+        context['form'] = ClienteForm
+        context['endereco_form'] = EnderecoForm
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        '''
+            Função responsável por pegar os dados do formulário
+            e se for válido, armazenar no banco
+        '''
+        cliente_form = ClienteForm(data=request.POST)
+        endereco_form = EnderecoForm(data=request.POST)
+        if cliente_form.is_valid() and endereco_form.is_valid():
+            endereco = endereco_form.save()
+            cliente = cliente_form.save(commit=False)
+            cliente.endereco = endereco
+            cliente.save()
+            return HttpResponseRedirect(reverse('lista_clientes')) 
  
 
 class ClienteListView(ListView):
