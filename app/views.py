@@ -67,9 +67,26 @@ class ClienteUpdateView(UpdateView):
         Classe para atualizar dados de um cliente
     '''
     model = Cliente
-    fields = '__all__'
+    form_class = ClienteForm
     template_name = 'form_cliente.html'
     success_url = reverse_lazy('lista_clientes') 
+
+    def get_context_data(self, **kwargs):
+        context = super(ClienteUpdateView, self).get_context_data(**kwargs)
+        context['form'] = ClienteForm(instance=self.object)
+        context['endereco_form'] = EnderecoForm(instance=self.object.endereco)
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        cliente = Cliente.objects.get(id=kwargs['pk'])
+        cliente_form = ClienteForm(data=request.POST or None, instance=cliente)
+        endereco_form = EnderecoForm(data=request.POST or None, instance=cliente.endereco)
+        if cliente_form.is_valid() and endereco_form.is_valid():
+            endereco = endereco_form.save()
+            cliente = cliente_form.save(commit=False)
+            cliente.endereco = endereco
+            cliente.save()
+            return HttpResponseRedirect(reverse('lista_clientes')) 
 
 
 class ClienteDeleteView(DeleteView):

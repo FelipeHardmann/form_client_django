@@ -11,6 +11,12 @@
                         <li>{{ cliente.profissao }}</li>
                         <li>{{ cliente.email }}</li>
                         <li>{{ cliente.data_nasc }}</li>
+                        <hr>
+                        <li>{{ cliente.endereco.rua }}</li>
+                        <li>{{ cliente.endereco.numero }}</li>
+                        <li>{{ cliente.endereco.bairro }}</li>
+                        <li>{{ cliente.endereco.cidade }}</li>
+                        <li>{{ cliente.endereco.estado }}</li>
                     </div>
                     <div class="panel-footer">
                         <a href={% url "editar_cliente" pk=cliente.id %}>Editar</a>
