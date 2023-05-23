@@ -6,8 +6,8 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
-from .models import Cliente
-from .forms import ClienteForm, EnderecoForm
+from ..models import Cliente
+from ..forms.cliente_forms import ClienteForm, EnderecoForm
 
 class ClienteCreateView(CreateView):
     '''
@@ -16,7 +16,7 @@ class ClienteCreateView(CreateView):
     '''
     model = Cliente
     form_class = ClienteForm
-    template_name = 'form_cliente.html'
+    template_name = 'clientes/form_cliente.html'
     success_url = 'lista_clientes'
 
     def get_context_data(self, **kwargs):
@@ -50,7 +50,7 @@ class ClienteListView(ListView):
         listando eles. 
     '''
     model = Cliente
-    template_name = 'lista_clientes.html'
+    template_name = 'clientes/lista_clientes.html'
 
 
 class ClienteDetailView(DetailView):
@@ -58,7 +58,7 @@ class ClienteDetailView(DetailView):
         Classe que vai detalhar somente um único cliente
     '''
     model = Cliente
-    template_name = 'lista_cliente.html'
+    template_name = 'clientes/lista_cliente.html'
     context_object_name = 'cliente'
 
 
@@ -68,7 +68,7 @@ class ClienteUpdateView(UpdateView):
     '''
     model = Cliente
     form_class = ClienteForm
-    template_name = 'form_cliente.html'
+    template_name = 'clientes/form_cliente.html'
     success_url = reverse_lazy('lista_clientes') 
 
     def get_context_data(self, **kwargs):
@@ -94,7 +94,7 @@ class ClienteDeleteView(DeleteView):
         Classe para deletar clientes
     '''
     model = Cliente
-    template_name = 'remover_cliente.html'
+    template_name = 'clientes/remover_cliente.html'
     success_url = reverse_lazy('lista_clientes') 
 
     def post(self, request, *args, **kwargs):
