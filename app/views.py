@@ -96,3 +96,9 @@ class ClienteDeleteView(DeleteView):
     model = Cliente
     template_name = 'remover_cliente.html'
     success_url = reverse_lazy('lista_clientes') 
+
+    def post(self, request, *args, **kwargs):
+        cliente = Cliente.objects.get(id=kwargs['pk'])
+        cliente.endereco.delete()
+        cliente.delete()
+        return HttpResponseRedirect(reverse('lista_clientes'))
