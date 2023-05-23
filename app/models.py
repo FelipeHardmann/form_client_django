@@ -48,7 +48,8 @@ class Cliente(models.Model):
 
     def __str__(self) -> str:
         return f'{self.nome} - {self.email}'
-    
+    # 
+
 
 class Dependente(models.Model):
     nome = models.CharField(max_length=255, null=False, blank=False)
