@@ -3,6 +3,7 @@
     recebendo usuários e fazendo suas regras de negócio.
 '''
 
+from typing import Any, Dict
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
@@ -60,6 +61,11 @@ class ClienteDetailView(DetailView):
     model = Cliente
     template_name = 'clientes/lista_cliente.html'
     context_object_name = 'cliente'
+
+    def get_context_data(self, **kwargs):
+        context = super(ClienteDetailView, self).get_context_data(**kwargs)
+        context['cliente'] = Cliente.objects.select_related('endereco').get(id=self.kwargs['pk'])
+        return context
 
 
 class ClienteUpdateView(UpdateView):
