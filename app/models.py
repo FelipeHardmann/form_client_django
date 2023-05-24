@@ -54,7 +54,7 @@ class Cliente(models.Model):
 class Dependente(models.Model):
     nome = models.CharField(max_length=255, null=False, blank=False)
     telefone = models.CharField(max_length=12, null=False, blank=False)
-    titular = models.ForeignKey(to=Cliente, on_delete=models.CASCADE, null=False, blank=False)
+    titular = models.ForeignKey(to=Cliente, on_delete=models.CASCADE, null=False, blank=False, related_name="dependente")
 
 
 class Atendente(models.Model):

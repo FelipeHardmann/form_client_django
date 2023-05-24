@@ -17,6 +17,10 @@
                         <li>{{ cliente.endereco.bairro }}</li>
                         <li>{{ cliente.endereco.cidade }}</li>
                         <li>{{ cliente.endereco.estado }}</li>
+                        <hr>
+                        {% for dependente in cliente.dependente.all %}
+                            <li>{{ dependente.nome }}</li>
+                        {% endfor %}
                     </div>
                     <div class="panel-footer">
                         <a href={% url "editar_cliente" pk=cliente.id %}>Editar</a>

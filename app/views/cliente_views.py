@@ -64,7 +64,7 @@ class ClienteDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ClienteDetailView, self).get_context_data(**kwargs)
-        context['cliente'] = Cliente.objects.select_related('endereco').get(id=self.kwargs['pk'])
+        context['cliente'] = Cliente.objects.select_related('endereco').prefetch_related('dependente').get(id=self.kwargs['pk'])
         return context
 
 
