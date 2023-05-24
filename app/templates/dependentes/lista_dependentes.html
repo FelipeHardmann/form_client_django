@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block 'conteudo' %}
+
+    <div class="container">
+        <div class="row">
+            {% for dependente in object_list %}
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">{{ dependente.nome }} - {{ dependente.titular.nome }}</div>
+                    <div class="panel-body">{{ dependente.telefone }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href={% url "cadastrar_dependente"%} class="btn btn-primary">Cadastrar Dependente</a>
+    </div><br>
+
+{% endblock 'conteudo' %}
