@@ -52,6 +52,9 @@ class ClienteListView(ListView):
     '''
     model = Cliente
     template_name = 'clientes/lista_clientes.html'
+    # Aqui podemos fazer uma ordenação dentro da nossa view
+    queryset = Cliente.objects.all().order_by('-data_nasc')
+    # O django possui um sistema de filtros muito avançado
 
 
 class ClienteDetailView(DetailView):

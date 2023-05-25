@@ -61,3 +61,14 @@ class Atendente(models.Model):
     nome = models.CharField(max_length=255, null=False, blank=False)
     email = models.EmailField(null=False, blank=False)
     clientes = models.ManyToManyField(to=Cliente, related_name="atendente_cliente")
+
+    class Meta:
+        '''
+            Personalização do Django para modificar o nome da nossa tabela sem modificar o nosso
+            banco por completo
+
+            Podemos também criar ou modificar nossas primary keys dentro do django
+            apenas setando o id personalizado no começo da classe como um primary key
+        '''
+        db_table = 'app_funcionario'
+
