@@ -4,8 +4,8 @@
 '''
 
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import CreateView
+from app.forms.usuario_forms import UsuarioForm
+from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
 
 
@@ -14,7 +14,11 @@ class UsuarioCreateView(CreateView):
         Criando nosso usuário com autenticação
     '''
     model = User
-    form_class = UserCreationForm
+    form_class = UsuarioForm
     template_name = 'usuarios/form_usuario.html'
     success_url = reverse_lazy('lista_usuarios')
 
+
+class UsuarioListView(ListView):
+    model = User
+    template_name = 'usuarios/lista_usuario.html'

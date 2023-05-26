@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block 'conteudo' %}
+
+    <div class="container">
+        <div class="row">
+            {% for usuario in object_list %}
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">{{ usuario.username }}</div>
+                    <div class="panel-body">{{ usuario.email }}</div>
+                    <div class="panel-body">{{ usuario.first_name }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href={% url "cadastrar_usuario"%} class="btn btn-primary">Cadastrar Usuário</a>
+    </div><br>
+
+{% endblock 'conteudo' %}
