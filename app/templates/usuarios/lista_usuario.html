@@ -12,7 +12,7 @@
             <li>{{usuario.email}}</li>
           </div>
           <div class="panel-footer">    
-            <a href="#">Editar</a>
+            <a href={% url 'editar_usuario' pk=usuario.id %}>Editar</a>
             <a href="#">Remover</a>
           </div>
         </div>
