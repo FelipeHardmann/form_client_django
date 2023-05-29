@@ -2,7 +2,7 @@ from django.urls import include, path
 from .views.cliente_views import ClienteCreateView, ClienteListView, ClienteUpdateView, ClienteDetailView, ClienteDeleteView
 from .views.dependente_views import DependenteCreateView, DependenteListView
 from .views.atendente_views import AtendenteCreateView, AtendenteListView
-from .views.usuario_views import UsuarioCreateView, UsuarioListView
+from .views.usuario_views import UsuarioCreateView, UsuarioListView, UsuarioDetailView
 
 urlpatterns = [
     path('form_cliente', ClienteCreateView.as_view(), name='cadastrar_cliente'),
@@ -16,4 +16,5 @@ urlpatterns = [
     path('lista_atendentes', AtendenteListView.as_view(), name='lista_atendentes'),
     path('form_usuario', UsuarioCreateView.as_view(), name='cadastrar_usuario'),
     path('lista_usuarios', UsuarioListView.as_view(), name='lista_usuarios'),
+    path("lista_usuario/<int:pk>", UsuarioDetailView.as_view(), name="lista_usuario"),
 ]

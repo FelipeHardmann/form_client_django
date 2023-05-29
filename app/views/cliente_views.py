@@ -3,7 +3,6 @@
     recebendo usuários e fazendo suas regras de negócio.
 '''
 
-from typing import Any, Dict
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView

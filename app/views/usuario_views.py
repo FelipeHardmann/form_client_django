@@ -5,7 +5,7 @@
 
 from django.contrib.auth.models import User
 from app.forms.usuario_forms import UsuarioForm
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 from django.urls import reverse_lazy
 
 
@@ -21,4 +21,10 @@ class UsuarioCreateView(CreateView):
 
 class UsuarioListView(ListView):
     model = User
-    template_name = 'usuarios/lista_usuario.html'
+    template_name = 'usuarios/lista_usuarios.html'
+
+
+class UsuarioDetailView(DetailView):
+    model = User
+    template_name = "usuarios/lista_usuario.html"
+    context_object_name = "usuario"
