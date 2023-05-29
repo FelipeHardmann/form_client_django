@@ -2,7 +2,7 @@ from django.urls import include, path
 from .views.cliente_views import ClienteCreateView, ClienteListView, ClienteUpdateView, ClienteDetailView, ClienteDeleteView
 from .views.dependente_views import DependenteCreateView, DependenteListView
 from .views.atendente_views import AtendenteCreateView, AtendenteListView
-from .views.usuario_views import UsuarioCreateView, UsuarioListView, UsuarioDetailView, UsuarioUpdateView
+from .views.usuario_views import UsuarioCreateView, UsuarioListView, UsuarioDetailView, UsuarioUpdateView, UsuarioDeleteView
 
 urlpatterns = [
     path('form_cliente', ClienteCreateView.as_view(), name='cadastrar_cliente'),
@@ -18,4 +18,5 @@ urlpatterns = [
     path('lista_usuarios', UsuarioListView.as_view(), name='lista_usuarios'),
     path("lista_usuario/<int:pk>", UsuarioDetailView.as_view(), name="lista_usuario"),
     path('form_usuario/<int:pk>', UsuarioUpdateView.as_view(), name='editar_usuario'),
+    path('remover_usuario/<int:pk>', UsuarioDeleteView.as_view(), name='remover_usuario'),
 ]

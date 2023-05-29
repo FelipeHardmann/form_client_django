@@ -13,7 +13,7 @@
           </div>
           <div class="panel-footer">    
             <a href={% url 'editar_usuario' pk=usuario.id %}>Editar</a>
-            <a href="#">Remover</a>
+            <a href={% url 'remover_usuario' pk=usuario.id %}>Remover</a>
           </div>
         </div>
       </div>
