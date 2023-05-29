@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load bootstrap5 %}
+
+{% block 'conteudo' %}
+<div class="container">  
+    {% if error %}
+        <span style="color: red">{{ error }}</span>
+    {% endif %}
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-primary">
+            <form method="post" action="">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <input type="submit" class="btn btn-primary" value="Login">
+            </form>
+        </div>
+      </div>
+    </div>
+  </div><br>
+{% endblock 'conteudo' %}

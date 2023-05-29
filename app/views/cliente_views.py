@@ -8,8 +8,10 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
 from ..models import Cliente
 from ..forms.cliente_forms import ClienteForm, EnderecoForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class ClienteCreateView(CreateView):
+
+class ClienteCreateView(LoginRequiredMixin, CreateView):
     '''
         Classe para criação da View
         Aqui criamos nossa visualização e comunicação para o front-end
@@ -44,7 +46,7 @@ class ClienteCreateView(CreateView):
             return HttpResponseRedirect(reverse('lista_clientes')) 
  
 
-class ClienteListView(ListView):
+class ClienteListView(LoginRequiredMixin ,ListView):
     '''
         Classe para enviar informações de todos os clientes
         listando eles. 
@@ -56,7 +58,7 @@ class ClienteListView(ListView):
     # O django possui um sistema de filtros muito avançado
 
 
-class ClienteDetailView(DetailView):
+class ClienteDetailView(LoginRequiredMixin, DetailView):
     '''
         Classe que vai detalhar somente um único cliente
     '''
@@ -70,7 +72,7 @@ class ClienteDetailView(DetailView):
         return context
 
 
-class ClienteUpdateView(UpdateView):
+class ClienteUpdateView(LoginRequiredMixin ,UpdateView):
     '''
         Classe para atualizar dados de um cliente
     '''
@@ -97,7 +99,7 @@ class ClienteUpdateView(UpdateView):
             return HttpResponseRedirect(reverse('lista_clientes')) 
 
 
-class ClienteDeleteView(DeleteView):
+class ClienteDeleteView(LoginRequiredMixin, DeleteView):
     '''
         Classe para deletar clientes
     '''

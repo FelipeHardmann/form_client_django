@@ -1,8 +1,29 @@
 from django.urls import include, path
-from .views.cliente_views import ClienteCreateView, ClienteListView, ClienteUpdateView, ClienteDetailView, ClienteDeleteView
-from .views.dependente_views import DependenteCreateView, DependenteListView
-from .views.atendente_views import AtendenteCreateView, AtendenteListView
-from .views.usuario_views import UsuarioCreateView, UsuarioListView, UsuarioDetailView, UsuarioUpdateView, UsuarioDeleteView
+from .views.cliente_views import (
+    ClienteCreateView,
+    ClienteListView, 
+    ClienteUpdateView, 
+    ClienteDetailView, 
+    ClienteDeleteView
+)
+from .views.dependente_views import (
+    DependenteCreateView, 
+    DependenteListView
+)
+from .views.atendente_views import (
+    AtendenteCreateView, 
+    AtendenteListView
+)
+from .views.usuario_views import (
+    UsuarioCreateView, 
+    UsuarioListView, 
+    UsuarioDetailView, 
+    UsuarioUpdateView, 
+    UsuarioDeleteView
+)
+from .views.autenticacao_views import (
+    LoginView, LogoutView, AlterarSenhaView
+)
 
 urlpatterns = [
     path('form_cliente', ClienteCreateView.as_view(), name='cadastrar_cliente'),
@@ -19,4 +40,7 @@ urlpatterns = [
     path("lista_usuario/<int:pk>", UsuarioDetailView.as_view(), name="lista_usuario"),
     path('form_usuario/<int:pk>', UsuarioUpdateView.as_view(), name='editar_usuario'),
     path('remover_usuario/<int:pk>', UsuarioDeleteView.as_view(), name='remover_usuario'),
+    path('login_usuario', LoginView.as_view(), name='logar_usuario'),
+    path('logout_usuario', LogoutView.as_view(), name='deslogar_usuario'),
+    path('alterar_senha', AlterarSenhaView.as_view(), name='alterar_senha'),
 ]
