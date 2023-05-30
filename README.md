@@ -9,7 +9,7 @@
 Status do Projeto
 =================
 <h4 align="center"> 
-	🚧  🚀 Em construção...  🚧
+	✅  🚀 Finalizado  ✅
 </h4>
 
 ### Features
@@ -21,6 +21,12 @@ Status do Projeto
 - [x] Detalhamento do cliente
 - [x] Modificação das rotas
 - [x] Internacionalização 
+- [x] Autenticação
+- [x] Autorização de usuários
+- [x] Separação de quais usuários podem apagar e inserir novos usuários
+- [x] Adicionar 1 Super usuário que poderá fazer tudo
+- [x] Adicionar a função de teste para verificar se o usuário está logado
+- [x] Finalizar README.MD
 
 ### Pré-requisitos
 
