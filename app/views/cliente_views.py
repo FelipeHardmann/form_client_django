@@ -3,15 +3,17 @@
     recebendo usuários e fazendo suas regras de negócio.
 '''
 
+from typing import Optional
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, UpdateView, DetailView, DeleteView
 from ..models import Cliente
 from ..forms.cliente_forms import ClienteForm, EnderecoForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .mixins import GerentePermissionMixin
 
 
-class ClienteCreateView(LoginRequiredMixin, CreateView):
+class ClienteCreateView(GerentePermissionMixin, CreateView):
     '''
         Classe para criação da View
         Aqui criamos nossa visualização e comunicação para o front-end
@@ -72,7 +74,7 @@ class ClienteDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-class ClienteUpdateView(LoginRequiredMixin ,UpdateView):
+class ClienteUpdateView(GerentePermissionMixin, UpdateView):
     '''
         Classe para atualizar dados de um cliente
     '''
@@ -99,7 +101,7 @@ class ClienteUpdateView(LoginRequiredMixin ,UpdateView):
             return HttpResponseRedirect(reverse('lista_clientes')) 
 
 
-class ClienteDeleteView(LoginRequiredMixin, DeleteView):
+class ClienteDeleteView(GerentePermissionMixin, DeleteView):
     '''
         Classe para deletar clientes
     '''

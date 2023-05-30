@@ -11,9 +11,11 @@
             <li>{{usuario.last_name}}</li>
             <li>{{usuario.email}}</li>
           </div>
-          <div class="panel-footer">    
+          <div class="panel-footer">
+        {% if user.is_superuser %}    
             <a href={% url 'editar_usuario' pk=usuario.id %}>Editar</a>
             <a href={% url 'remover_usuario' pk=usuario.id %}>Remover</a>
+        {% endif %}  
           </div>
         </div>
       </div>

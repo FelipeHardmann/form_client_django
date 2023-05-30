@@ -3,13 +3,16 @@
     de usuário, facilitará a segurança do programa
 '''
 
+from typing import Optional
 from app.models import User
 from app.forms.usuario_forms import UsuarioForm, UsuarioUpdateForm
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .mixins import AdminPermissionMixin
 
-class UsuarioCreateView(CreateView):
+
+class UsuarioCreateView(AdminPermissionMixin, CreateView):
     '''
         Criando nosso usuário com autenticação
     '''
@@ -30,11 +33,14 @@ class UsuarioDetailView(LoginRequiredMixin, DetailView):
     context_object_name = "usuario"
 
 
-class UsuarioUpdateView(LoginRequiredMixin, UpdateView):
+class UsuarioUpdateView(AdminPermissionMixin, UpdateView):
     model = User
     form_class = UsuarioUpdateForm
     template_name = 'usuarios/form_usuario.html'
     success_url = reverse_lazy('lista_usuarios')
+
+    def test_func(self) -> bool | None:
+        return self.request.user.is_superuser
 
 
 class UsuarioDeleteView(LoginRequiredMixin, DeleteView):

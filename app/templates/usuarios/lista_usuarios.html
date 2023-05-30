@@ -19,7 +19,9 @@
             </div>
             {% endfor %}
         </div>
+        {% if user.is_superuser %}
         <a href={% url "cadastrar_usuario"%} class="btn btn-primary">Cadastrar Usuário</a>
+        {% endif %}
     </div><br>
 
 {% endblock 'conteudo' %}
